@@ -14,9 +14,12 @@ namespace CourseCenter
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+				
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Index", action = "ShowIndex", id = UrlParameter.Optional }
+
+			  ///我就是完成一定的测试的，没有什么别的意思
             );
         }
     }
