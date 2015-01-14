@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "ModuleView4";
+    Layout = "~/Views/Shared/CouserAndStudent.cshtml";
+}
+
+@section span9{
+    <div class="span9" id="content">
+                      <!-- morris stacked chart -->
+
+                     <div class="row-fluid">
+                        <!-- block -->
+                      <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">课程管理</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+                                    <form class="form-horizontal" action="/ModuleManage/AddModule?moduleTag=4" method="post" enctype="multipart/form-data">
+                                      <fieldset>
+                                        <legend>解决方案分析</legend>
+                                        
+                                           <input type="hidden" name="CourseId" value="@ViewBag.CId" />
+                                <input type="hidden" name="ModuleId" value="@ViewBag.ModuleId" />             
+                          
+                                           
+
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">模块名称 </label>
+                                          <div class="controls">
+                                              @{
+                                                  if (@ViewBag.Pagemodule != null)
+                                                  { 
+                                                   <text><input type="text" value="@ViewBag.Pagemodule.ModuleTitle" class="span6" name="ModuleTitle" ></text>
+                                                  }
+                                                  else
+                                                  {
+                                                  <text><input type="text" class="span6" name="ModuleTitle" ></text>
+                                                  }
+}
+                                           
+                                            
+                                          </div>
+                                        </div>
+                                        
+                                           <div class="control-group">
+                                          <label class="control-label" for="date01">截至日期</label>
+                                          <div class="controls">
+
+                                              @{
+                                                  if (@ViewBag.Pagemodule != null)
+                                                  {
+                                                     <text><input type="text" name="DeadLineTime" class="input-xlarge datepicker" id="date01" value="@ViewBag.Pagemodule.DeadlineTime">  </text>
+                                                  }
+                                                  else
+                                                  {
+                                                        <text><input type="text" name="DeadLineTime" class="input-xlarge datepicker" id="date01" value="02/16/14"> </text>
+                                                  }
+
+                                                  }
+                                           
+                                            
+                                          </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="fileInput">模块资源</label>
+                                          <div class="controls">
+                                              @{
+                                                  if (@ViewBag.Pagemodule != null){
+                                                      <a class="btn btn-primary" href="@ViewBag.Pagemodule.ModuleFilePath" target="_blank">完成下载</a>
+                                                   <input class="input-file uniform_on" id="fileInput" type="file" name="teacherUpLoad" >
+                                                  
+                                                  }
+                                                  else
+                                                  {
+                                                      <input class="input-file uniform_on" id="fileInput" type="file" name="teacherUpLoad">
+                                                  }
+                                                  }
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="textarea2">模块内容</label>
+                                          <div class="controls">
+                                              @{
+                                                  if (@ViewBag.Pagemodule != null)
+                                                  {
+                                                      <text>
+                                               <textarea class="input-xlarge textarea" placeholder="Enter text ..." name="ModuleContent" style="width: 810px; height: 200px">
+                                                   @ViewBag.Pagemodule.ModuleContent
+
+                                               </textarea>
+                                              </text>
+                                                  }
+                                                  else
+                                                  {
+                                                                                                  <text><textarea class="input-xlarge textarea"  name="ModuleContent" placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea> </text> 
+                                                  }
+                                                  }
+
+                                          </div>
+                                        </div>
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">保存模块</button>
+                                          <button type="reset" class="btn">取消</button>
+
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+                     <!-- wizard --><!-- /wizard -->
+
+                     <!-- validation --><!-- /validation -->
+
+
+                </div>
+
+         
+    }
+ @section booterScript{
+      <link href="~/Content/vendors/datepicker.css" rel="stylesheet" media="screen">
+        <link href="~/Content/vendors/uniform.default.css" rel="stylesheet" media="screen">
+        <link href="~/Content/vendors/chosen.min.css" rel="stylesheet" media="screen">
+
+        <link href="~/Content/vendors/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet" media="screen">
+
+        <script src="~/Content/vendors/jquery-1.9.1.js"></script>
+        <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/Content/vendors/jquery.uniform.min.js"></script>
+        <script src="~/Content/vendors/chosen.jquery.min.js"></script>
+        <script src="~/Content/vendors/bootstrap-datepicker.js"></script>
+
+        <script src="~/Content/vendors/wysiwyg/wysihtml5-0.3.0.js"></script>
+        <script src="~/Content/vendors/wysiwyg/bootstrap-wysihtml5.js"></script>
+
+        <script src="~/Content/vendors/wizard/jquery.bootstrap.wizard.min.js"></script>
+
+	<script type="text/javascript" src="~/Content/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/Content/assets/form-validation.js"></script>
+        
+	<script src="~/Content/assets/scripts.js"></script>
+        <script>
+
+            jQuery(document).ready(function () {
+                FormValidation.init();
+            });
+
+
+            $(function () {
+                $(".datepicker").datepicker();
+                $(".uniform_on").uniform();
+                $(".chzn-select").chosen();
+                $('.textarea').wysihtml5();
+
+                $('#rootwizard').bootstrapWizard({
+                    onTabShow: function (tab, navigation, index) {
+                        var $total = navigation.find('li').length;
+                        var $current = index + 1;
+                        var $percent = ($current / $total) * 100;
+                        $('#rootwizard').find('.bar').css({ width: $percent + '%' });
+                        // If it's the last tab then hide the last button and show the finish instead
+                        if ($current >= $total) {
+                            $('#rootwizard').find('.pager .next').hide();
+                            $('#rootwizard').find('.pager .finish').show();
+                            $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                        } else {
+                            $('#rootwizard').find('.pager .next').show();
+                            $('#rootwizard').find('.pager .finish').hide();
+                        }
+                    }
+                });
+                $('#rootwizard .finish').click(function () {
+                    alert('Finished!, Starting over!');
+                    $('#rootwizard').find("a[href*='tab1']").trigger('click');
+                });
+            });
+        </script>
+
+
+     }
